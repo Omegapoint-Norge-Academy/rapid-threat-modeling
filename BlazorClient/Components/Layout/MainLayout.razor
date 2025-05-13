@@ -1,0 +1,57 @@
+﻿@using System.Security.Principal
+@using Microsoft.AspNetCore.Components.Authorization
+@inherits LayoutComponentBase
+@inject AuthenticationStateProvider AuthenticationState
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu/>
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            @if (UserIdentity is not null && UserIdentity.IsAuthenticated)
+            {
+                <div class="d-flex align-items-center">
+                    <div>@UserIdentity.Name</div>
+                    <form action="/authentication/logout" method="post">
+                        <AntiforgeryToken/>
+                        <button class="btn" style="color: royalblue" type="submit">
+                            Sign out
+                        </button>
+                    </form>
+                </div>
+            }
+            else
+            {
+                <div>
+                    <a href="/authentication/login">Sign in</a>
+                </div>
+            }
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+<div id="blazor-error-ui" data-nosnippet>
+    An unhandled error has occurred.
+    <a href="." class="reload">Reload</a>
+    <span class="dismiss">🗙</span>
+</div>
+
+@code {
+
+    private IIdentity? UserIdentity { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await @AuthenticationState.GetAuthenticationStateAsync();
+        // if user is authenticated
+        if (authState.User.Identity?.IsAuthenticated ?? false)
+            UserIdentity = authState.User.Identity;
+    }
+
+}
