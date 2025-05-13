@@ -5,6 +5,7 @@ bin/
 obj/
 project.lock.json
 NuGetScratch/
+appsettings.Development.json
 
 api/wwwroot/**
 !api/wwwroot/scratch.html
