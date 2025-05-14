@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using BlazorClient;
 using BlazorClient.Components;
 using Database;
+using Database.SeedData;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -74,11 +75,20 @@ builder.Services.AddDbContext<CommercialContext>(options =>
     }
 );
 
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.AddScoped<DatabaseSeeder>();
+}
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
+    await app.InitializeDatabaseAsync();
+}
+else
+{
+    // Configure the HTTP request pipeline.
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
