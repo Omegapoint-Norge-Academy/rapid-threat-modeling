@@ -11,7 +11,7 @@ Project case study for the rapid threat modeling workshop
   - [ ] Hente data fra databasen
 - [x] Databaseprosjekt
 - [ ] .NET backend-prosjekt (UserServiceWorker)
-  - [ ] Lage prosjekt
+  - [x] Lage prosjekt
   - [ ] Hente data fra databasen
   - [ ] Worker som poster data til .NET-klient og Node.js-klient
 - [ ] Node.js klientprosjekt
