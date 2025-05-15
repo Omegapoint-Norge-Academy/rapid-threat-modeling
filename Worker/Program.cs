@@ -2,12 +2,15 @@ using Rtm.Database;
 using Rtm.Database.SeedData;
 using Rtm.Worker;
 using Microsoft.EntityFrameworkCore;
+using Rtm.Worker.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
 builder.Services.AddScoped<DatabaseSeeder>();
+builder.Services.AddScoped<WeatherForecastService>();
+builder.Services.AddHostedService<TimedWorker>();
 
 builder.Services.AddDbContext<CommercialContext>(options =>
 {
@@ -15,8 +18,6 @@ builder.Services.AddDbContext<CommercialContext>(options =>
     options.UseSqlServer(connectionsString,
         s => s.MigrationsAssembly(typeof(CommercialContext).Assembly));
 });
-
-builder.Services.AddScoped<DatabaseSeeder>();
 
 var app = builder.Build();
 

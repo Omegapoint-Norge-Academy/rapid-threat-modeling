@@ -1,22 +1,19 @@
-using Microsoft.AspNetCore.Mvc;
+namespace Rtm.Worker.Services;
 
-namespace Rtm.Worker.Controllers;
-
-[ApiController]
-[Route("[controller]")]
-public class WeatherForecastController : ControllerBase
+public class WeatherForecastService
 {
     private static readonly string[] Summaries =
     [
         "Dritkaldt", "Veldig kaldt", "Kaldt", "Kjølig", "Mildt", "Lummert", "Varmt", "Hett", "Dritvarmt"
     ];
 
-    [HttpGet(Name = "GetWeatherForecast")]
-    public IEnumerable<WeatherForecast> Get()
+    public IEnumerable<WeatherForecast> GetForecasts(int days)
     {
         var minTemp = -20m;
         var maxTemp = 55m;
-        return Enumerable.Range(1, 5).Select(index =>
+        if (days < 1 || days > 100)
+            return [];
+        return Enumerable.Range(1, days).Select(index =>
             {
                 var tempC = Random.Shared.Next((int)minTemp, (int)maxTemp);
                 return new WeatherForecast

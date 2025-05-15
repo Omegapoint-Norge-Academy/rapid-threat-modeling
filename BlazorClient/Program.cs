@@ -8,6 +8,7 @@ using Rtm.BlazorClient;
 using Rtm.BlazorClient.Components;
 using Rtm.Database;
 using Microsoft.EntityFrameworkCore;
+using Rtm.BlazorClient.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -57,6 +58,8 @@ builder.Services.AddAuthorization(options =>
     options.DefaultPolicy = defaultPolicy;
     options.FallbackPolicy = defaultPolicy;
 });
+
+builder.Services.AddSingleton<CachedWeatherDataService>();
 
 builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddHttpContextAccessor();
