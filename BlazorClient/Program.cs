@@ -75,18 +75,9 @@ builder.Services.AddDbContext<CommercialContext>(options =>
     }
 );
 
-if (builder.Environment.IsDevelopment())
-{
-    builder.Services.AddScoped<DatabaseSeeder>();
-}
-
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    await app.InitializeDatabaseAsync();
-}
-else
+if (!app.Environment.IsDevelopment())
 {
     // Configure the HTTP request pipeline.
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
