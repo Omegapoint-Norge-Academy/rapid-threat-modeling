@@ -1,4 +1,4 @@
-namespace Database.Models;
+namespace Rtm.Database.Models;
 
 public class Product
 {

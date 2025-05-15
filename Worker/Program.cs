@@ -1,6 +1,6 @@
-using BlazorClient;
-using Database;
-using Database.SeedData;
+using Rtm.Database;
+using Rtm.Database.SeedData;
+using Rtm.Worker;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Authentication;
 
-namespace BlazorClient;
+namespace Rtm.BlazorClient;
 
 public static class AuthHelper
 {

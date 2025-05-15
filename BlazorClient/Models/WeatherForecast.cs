@@ -1,4 +1,4 @@
-namespace BlazorClient.Models;
+namespace Rtm.BlazorClient.Models;
 
 public class WeatherForecast
 {

@@ -1,6 +1,6 @@
-using Database.SeedData;
+using Rtm.Database.SeedData;
 
-namespace BlazorClient;
+namespace Rtm.Worker;
 
 public static class DatabaseInitializer
 {

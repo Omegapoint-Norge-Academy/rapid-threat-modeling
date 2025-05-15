@@ -1,8 +1,8 @@
 using Bogus;
-using Database.Models;
 using Microsoft.IdentityModel.Tokens;
+using Rtm.Database.Models;
 
-namespace Database.SeedData;
+namespace Rtm.Database.SeedData;
 
 public class SeedOrders(int seed = 123)
 {

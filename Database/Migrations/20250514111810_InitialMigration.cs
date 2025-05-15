@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Database.Migrations
+namespace Rtm.Database.Migrations
 {
     /// <inheritdoc />
     public partial class InitialMigration : Migration

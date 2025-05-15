@@ -4,10 +4,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Web;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
-using BlazorClient;
-using BlazorClient.Components;
-using Database;
-using Database.SeedData;
+using Rtm.BlazorClient;
+using Rtm.BlazorClient.Components;
+using Rtm.Database;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

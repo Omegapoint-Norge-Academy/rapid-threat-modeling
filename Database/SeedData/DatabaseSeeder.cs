@@ -1,4 +1,4 @@
-namespace Database.SeedData;
+namespace Rtm.Database.SeedData;
 
 public class DatabaseSeeder(CommercialContext dbContext)
 {

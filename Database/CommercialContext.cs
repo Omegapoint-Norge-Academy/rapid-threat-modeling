@@ -1,7 +1,7 @@
-﻿using Database.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Rtm.Database.Models;
 
-namespace Database;
+namespace Rtm.Database;
 
 public class CommercialContext : DbContext
 {

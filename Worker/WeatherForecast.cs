@@ -1,4 +1,4 @@
-namespace CommercialApi;
+namespace Rtm.Worker;
 
 public class WeatherForecast
 {

@@ -1,7 +1,7 @@
 using Bogus;
-using Database.Models;
+using Rtm.Database.Models;
 
-namespace Database.SeedData;
+namespace Rtm.Database.SeedData;
 
 public class SeedCreditCardInfos
 {

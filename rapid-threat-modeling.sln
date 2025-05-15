@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorClient", "BlazorClien
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{EE79BE6D-66B1-411B-9FF3-81F2D675C13D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommercialApi", "CommercialApi\CommercialApi.csproj", "{F8DDEBA6-8839-43F4-98E2-324236BF9558}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Worker", "Worker\Worker.csproj", "{F8DDEBA6-8839-43F4-98E2-324236BF9558}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
