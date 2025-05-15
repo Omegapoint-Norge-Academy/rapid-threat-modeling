@@ -1,0 +1,25 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
+
+@page "/unauthorized"
+@attribute [AllowAnonymous]
+@inject AuthenticationStateProvider AuthenticationState
+@inject NavigationManager NavManager
+
+<PageTitle>Not authorized</PageTitle>
+
+<h1 class="text-danger">Top secret data!</h1>
+<h2>You are not authorized to view this data</h2>
+<h2>Please <a href="/authentication/login">sign in</a> to view confidential information</h2>
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await @AuthenticationState.GetAuthenticationStateAsync();
+        // if user is authenticated
+        if (authState.User.Identity?.IsAuthenticated ?? false)
+            NavManager.NavigateTo("/");
+    }
+
+}
