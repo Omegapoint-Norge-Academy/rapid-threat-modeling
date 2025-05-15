@@ -9,7 +9,7 @@ public class SeedCreditCardInfos
 
     public SeedCreditCardInfos(int seed = 123)
     {
-        _faker = new Faker<CreditCardInfo>("nb_NO")
+        _faker = new Faker<CreditCardInfo>("en_GB")
             .UseSeed(seed)
             .RuleFor(cc => cc.Owner, f => f.Name.FullName())
             .RuleFor(cc => cc.Number, f => f.Finance.CreditCardNumber())

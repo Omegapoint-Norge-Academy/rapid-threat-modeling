@@ -10,48 +10,58 @@ public class SeedProducts
     [
         new()
         {
-            Name = "Ringbrynje",
-            Price = 20_000m,
-        },
-        new()
-        {
-            Name = "20 i 1 såpe",
-            Price = 29.90m,
-        },
-        new()
-        {
-            Name = "Råolje (fat)",
+            Name = "Himalaya salt",
             Price = 69m,
         },
         new()
         {
-            Name = "Hundre vbucks",
+            Name = "Norton antivirus",
+            Price = 29.90m,
+        },
+        new()
+        {
+            Name = "Horse armor",
+            Price = 1000m,
+        },
+        new()
+        {
+            Name = "Mithril plated HDMI cable",
+            Price = 20_000m,
+        },
+        new()
+        {
+            Name = "100 vbucks",
             Price = 100m,
         },
         new()
         {
-            Name = "5G-basestasjon",
-            Price = 9_995m,
+            Name = "NordVPN subscription",
+            Price = 90m,
         },
         new()
         {
-            Name = "WinRar-lisens",
+            Name = "WinRar license",
             Price = 299m,
         },
         new()
         {
-            Name = "Papegøye",
+            Name = "Healing crystal",
             Price = 198m,
         },
         new()
         {
-            Name = "CD-spiller",
+            Name = "Docker desktop commercial license",
             Price = 399.98m,
         },
         new()
         {
-            Name = "Solbærtoddy",
-            Price = 100m,
+            Name = "YouTube premium",
+            Price = 98.0m,
+        },
+        new()
+        {
+            Name = "Cigarettes",
+            Price = 190.50m,
         },
     ];
 }

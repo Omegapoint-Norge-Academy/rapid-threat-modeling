@@ -9,7 +9,7 @@ public class SeedUsers
 
     public SeedUsers(int seed = 123)
     {
-        _faker = new Faker<User>("nb_NO")
+        _faker = new Faker<User>("en_GB")
             .UseSeed(seed)
             .RuleFor(cc => cc.FirstName, f => f.Name.FirstName())
             .RuleFor(cc => cc.LastName, f => f.Name.LastName())
