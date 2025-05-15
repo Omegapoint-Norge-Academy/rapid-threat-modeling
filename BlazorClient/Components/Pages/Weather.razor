@@ -3,17 +3,19 @@
 
 @page "/weather"
 @inject CachedWeatherDataService CachedWeatherDataService
+@implements IDisposable
 
 <PageTitle>Weather</PageTitle>
 
 <h1>Weather</h1>
 
-@if (_forecasts == null || _forecasts.Count == 0)
+@if (_forecastSeries == null || _forecastSeries.WeatherForecasts.Count == 0)
 {
     <p><em>Waiting for weather data...</em></p>
 }
 else
 {
+    <p>Updated at: @_forecastSeries.Timestamp.ToLongTimeString()</p>
     <table class="table">
         <thead>
         <tr>
@@ -24,7 +26,7 @@ else
         </tr>
         </thead>
         <tbody>
-        @foreach (var forecast in _forecasts)
+        @foreach (var forecast in _forecastSeries.WeatherForecasts)
         {
             <tr>
                 <td>@forecast.Date.ToShortDateString()</td>
@@ -38,13 +40,26 @@ else
 }
 
 @code {
-    private List<WeatherForecast>? _forecasts;
+    private WeatherForecastSeries? _forecastSeries;
 
-    protected override void OnInitialized()
+    protected override void OnAfterRender(bool firstRender)
     {
-        _forecasts = CachedWeatherDataService.GetWeatherForecast()
-            .OrderBy(f => f.Date)
-            .ToList();
+        if (firstRender && RendererInfo.IsInteractive)
+        {
+            _forecastSeries = CachedWeatherDataService.GetWeatherForecastSeries();
+            CachedWeatherDataService.OnChange += HandleUpdate;
+        }
+    }
+
+    private void HandleUpdate()
+    {
+        _forecastSeries = CachedWeatherDataService.GetWeatherForecastSeries();
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        CachedWeatherDataService.OnChange -= HandleUpdate;
     }
 
 }
