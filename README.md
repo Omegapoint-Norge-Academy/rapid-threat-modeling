@@ -8,7 +8,7 @@ Project case study for the rapid threat modeling workshop
   - [x] Lage prosjekt
   - [x] Entra ID login
   - [ ] Cache data som kommer fra UserServiceWorker
-  - [ ] Hente data fra databasen
+  - [x] Hente data fra databasen
 - [x] Databaseprosjekt
 - [ ] .NET backend-prosjekt (UserServiceWorker)
   - [x] Lage prosjekt

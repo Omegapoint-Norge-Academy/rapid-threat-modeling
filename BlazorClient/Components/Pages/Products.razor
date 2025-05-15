@@ -1,0 +1,45 @@
+﻿@page "/products"
+@using Microsoft.EntityFrameworkCore
+@using Rtm.Database
+@using Rtm.Database.Models
+@inject CommercialContext DbContext
+
+<PageTitle>Products</PageTitle>
+
+<h1>Products</h1>
+
+@if (ProductList is null || ProductList.Count == 0)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Product</th>
+            <th>Price (NOK)</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var product in ProductList)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Price</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+
+    private List<Product>? ProductList { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        ProductList = await DbContext.Products.ToListAsync();
+    }
+
+}
