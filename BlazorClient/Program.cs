@@ -59,10 +59,8 @@ builder.Services.AddAuthorization(options =>
 });
 
 builder.Services.AddCascadingAuthenticationState();
-
 builder.Services.AddHttpContextAccessor();
-
-// Add services to the container.
+builder.Services.AddControllers();
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
@@ -95,6 +93,7 @@ app.UseAntiforgery();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
+app.MapControllers();
 
 // Add login and logout endpoints
 var group = app.MapGroup("/authentication").MapGroup("");
