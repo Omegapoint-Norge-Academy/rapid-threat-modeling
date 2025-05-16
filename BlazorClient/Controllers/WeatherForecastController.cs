@@ -6,18 +6,24 @@ using Rtm.BlazorClient.Services;
 namespace Rtm.BlazorClient.Controllers;
 
 [ApiController]
+[AllowAnonymous]
 [Route("api/[controller]")]
-public class WeatherForecastController(CachedWeatherDataService cachedWeatherDataService) : ControllerBase
+public class WeatherForecastController(WeatherForecastCacheService weatherForecastCacheService) : ControllerBase
 {
-    [AllowAnonymous]
+    [HttpGet(Name = "GetAllWeatherForecasts")]
+    public ActionResult<IEnumerable<WeatherForecastSeriesModel>> GetAll()
+    {
+        return Ok(weatherForecastCacheService.GetWeatherForecastSeries());
+    }
+
     [HttpPost(Name = "PostWeatherForecast")]
-    public ActionResult Post([FromBody] IEnumerable<WeatherForecast> forecasts)
+    public ActionResult Post([FromBody] IEnumerable<WeatherForecastModel> forecasts)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
         Console.WriteLine($"Received weather forecast data at {DateTime.Now.TimeOfDay}");
-        cachedWeatherDataService.UpdateWeatherData(forecasts);
+        weatherForecastCacheService.UpdateWeatherData(forecasts);
 
         return Ok();
     }

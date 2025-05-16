@@ -8,16 +8,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddScoped<DatabaseSeeder>();
-builder.Services.AddScoped<WeatherForecastService>();
-builder.Services.AddHostedService<TimedWorker>();
-
 builder.Services.AddDbContext<CommercialContext>(options =>
 {
     var connectionsString = builder.Configuration.GetConnectionString("DefaultConnection");
     options.UseSqlServer(connectionsString,
         s => s.MigrationsAssembly(typeof(CommercialContext).Assembly));
 });
+
+builder.Services.AddScoped<DatabaseSeeder>();
+builder.Services.AddScoped<WeatherForecastService>();
+builder.Services.AddScoped<CreditCardInfoService>();
+builder.Services.AddHostedService<TimedWorker>();
 
 var app = builder.Build();
 

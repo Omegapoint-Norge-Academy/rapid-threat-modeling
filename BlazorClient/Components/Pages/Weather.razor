@@ -2,7 +2,7 @@
 @using Rtm.BlazorClient.Services
 
 @page "/weather"
-@inject CachedWeatherDataService CachedWeatherDataService
+@inject WeatherForecastCacheService WeatherForecastCacheService
 @implements IDisposable
 
 <PageTitle>Weather</PageTitle>
@@ -40,26 +40,23 @@ else
 }
 
 @code {
-    private WeatherForecastSeries? _forecastSeries;
+    private WeatherForecastSeriesModel? _forecastSeries;
 
-    protected override void OnAfterRender(bool firstRender)
+    protected override void OnInitialized()
     {
-        if (firstRender && RendererInfo.IsInteractive)
-        {
-            _forecastSeries = CachedWeatherDataService.GetWeatherForecastSeries();
-            CachedWeatherDataService.OnChange += HandleUpdate;
-        }
+        _forecastSeries = WeatherForecastCacheService.GetWeatherForecastSeries();
+        WeatherForecastCacheService.OnChange += HandleUpdate;
     }
 
     private void HandleUpdate()
     {
-        _forecastSeries = CachedWeatherDataService.GetWeatherForecastSeries();
+        _forecastSeries = WeatherForecastCacheService.GetWeatherForecastSeries();
         InvokeAsync(StateHasChanged);
     }
 
     public void Dispose()
     {
-        CachedWeatherDataService.OnChange -= HandleUpdate;
+        WeatherForecastCacheService.OnChange -= HandleUpdate;
     }
 
 }

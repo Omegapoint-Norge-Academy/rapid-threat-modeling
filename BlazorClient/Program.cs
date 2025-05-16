@@ -59,7 +59,8 @@ builder.Services.AddAuthorization(options =>
     options.FallbackPolicy = defaultPolicy;
 });
 
-builder.Services.AddSingleton<CachedWeatherDataService>();
+builder.Services.AddSingleton<WeatherForecastCacheService>();
+builder.Services.AddSingleton<CreditCardInfoCacheService>();
 
 builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddHttpContextAccessor();
@@ -103,11 +104,8 @@ var group = app.MapGroup("/authentication").MapGroup("");
 group.MapGet("/login", (string? returnUrl) => TypedResults.Challenge(AuthHelper.GetAuthProperties(returnUrl)))
     .AllowAnonymous();
 group.MapPost("/logout",
-    ([FromForm] string? returnUrl) =>
-    {
-        return TypedResults.SignOut(AuthHelper.GetAuthProperties(returnUrl),
-            [CookieAuthenticationDefaults.AuthenticationScheme, OpenIdConnectDefaults.AuthenticationScheme]);
-    });
+    ([FromForm] string? returnUrl) => TypedResults.SignOut(AuthHelper.GetAuthProperties(returnUrl),
+        [CookieAuthenticationDefaults.AuthenticationScheme, OpenIdConnectDefaults.AuthenticationScheme]));
 
 
 app.Run();
