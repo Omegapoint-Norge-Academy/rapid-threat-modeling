@@ -1,7 +1,11 @@
 ﻿@page "/products"
+
+@using Microsoft.AspNetCore.Authorization
 @using Microsoft.EntityFrameworkCore
 @using Rtm.Database
 @using Rtm.Database.Models
+
+@attribute [Authorize]
 @inject CommercialContext DbContext
 
 <PageTitle>Products</PageTitle>

@@ -1,7 +1,10 @@
-﻿@using Rtm.BlazorClient.Models
+﻿@page "/weather"
+
+@using Microsoft.AspNetCore.Authorization
+@using Rtm.BlazorClient.Models
 @using Rtm.BlazorClient.Services
 
-@page "/weather"
+@attribute [Authorize]
 @inject WeatherForecastCacheService WeatherForecastCacheService
 @implements IDisposable
 

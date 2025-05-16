@@ -24,19 +24,6 @@ builder.Services
             builder.Configuration.Bind("AzureAd", options);
             options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             options.ResponseType = OpenIdConnectResponseType.Code;
-            options.Events.OnRedirectToIdentityProvider = context =>
-            {
-                // Redirect user to IdP if user tries to access page requiring authentication
-                if (context.HttpContext.User.Identity is null ||
-                    !context.HttpContext.User.Identity.IsAuthenticated &&
-                    !context.Request.Path.Equals("/authentication/login"))
-                {
-                    context.HandleResponse();
-                    context.Response.Redirect("/unauthorized");
-                }
-
-                return Task.CompletedTask;
-            };
         },
         cookieOptions =>
         {
@@ -47,17 +34,7 @@ builder.Services
             cookieOptions.Cookie.SecurePolicy = CookieSecurePolicy.Always;
             cookieOptions.Cookie.SameSite = SameSiteMode.Lax;
         });
-
-// Add authorization and set default policy
-builder.Services.AddAuthorization(options =>
-{
-    var defaultPolicy = new AuthorizationPolicyBuilder()
-        .RequireAuthenticatedUser()
-        .Build();
-    options.AddPolicy("AuthenticatedUser", defaultPolicy);
-    options.DefaultPolicy = defaultPolicy;
-    options.FallbackPolicy = defaultPolicy;
-});
+builder.Services.AddAuthorization();
 
 builder.Services.AddSingleton<WeatherForecastCacheService>();
 builder.Services.AddSingleton<CreditCardInfoCacheService>();

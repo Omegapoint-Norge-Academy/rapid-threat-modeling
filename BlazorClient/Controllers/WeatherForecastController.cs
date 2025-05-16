@@ -6,7 +6,6 @@ using Rtm.BlazorClient.Services;
 namespace Rtm.BlazorClient.Controllers;
 
 [ApiController]
-[AllowAnonymous]
 [Route("api/[controller]")]
 public class WeatherForecastController(WeatherForecastCacheService weatherForecastCacheService) : ControllerBase
 {
