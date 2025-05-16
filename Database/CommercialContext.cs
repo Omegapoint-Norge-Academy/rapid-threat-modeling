@@ -3,13 +3,8 @@ using Rtm.Database.Models;
 
 namespace Rtm.Database;
 
-public class CommercialContext : DbContext
+public class CommercialContext(DbContextOptions<CommercialContext> options) : DbContext(options)
 {
-    public CommercialContext(DbContextOptions<CommercialContext> options)
-        : base(options)
-    {
-    }
-
     public DbSet<User> Users { get; set; }
     public DbSet<Product> Products { get; set; }
     public DbSet<Order> Orders { get; set; }

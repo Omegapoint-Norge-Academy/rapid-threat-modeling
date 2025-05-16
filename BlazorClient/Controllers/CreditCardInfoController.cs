@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Rtm.BlazorClient.Models;
 using Rtm.BlazorClient.Services;
@@ -14,7 +13,7 @@ public class CreditCardInfoController(CreditCardInfoCacheService creditCardInfoC
     {
         return Ok(creditCardInfoCacheService.GetCreditCardInfos());
     }
-    
+
     [HttpPost(Name = "PostCreditCardInfo")]
     public ActionResult Post([FromBody] IEnumerable<CreditCardInfoModel> creditCardInfos)
     {

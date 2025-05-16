@@ -1,8 +1,8 @@
 using Rtm.Database;
 using Rtm.Database.SeedData;
-using Rtm.Worker;
 using Microsoft.EntityFrameworkCore;
 using Rtm.Worker.Services;
+using Rtm.Worker.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 

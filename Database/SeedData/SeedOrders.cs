@@ -1,5 +1,3 @@
-using Bogus;
-using Microsoft.IdentityModel.Tokens;
 using Rtm.Database.Models;
 
 namespace Rtm.Database.SeedData;

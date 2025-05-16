@@ -2,7 +2,7 @@ using System.Text;
 using System.Text.Json;
 using Rtm.Worker.Services;
 
-namespace Rtm.Worker;
+namespace Rtm.Worker.Utils;
 
 public class TimedWorker(IServiceProvider serviceProvider) : BackgroundService
 {

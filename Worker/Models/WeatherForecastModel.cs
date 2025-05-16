@@ -1,6 +1,6 @@
-namespace Rtm.Worker;
+namespace Rtm.Worker.Models;
 
-public class WeatherForecast
+public class WeatherForecastModel
 {
     public DateOnly Date { get; set; }
     public int TemperatureC { get; set; }

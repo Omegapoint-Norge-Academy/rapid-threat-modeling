@@ -5,6 +5,7 @@ namespace Rtm.BlazorClient.Services;
 public class WeatherForecastCacheService
 {
     private readonly Lock _weatherLock = new();
+
     private WeatherForecastSeriesModel _weatherForecastSeriesModel =
         new() { WeatherForecasts = [], Timestamp = DateTime.Now };
 
@@ -21,7 +22,7 @@ public class WeatherForecastCacheService
         {
             _weatherForecastSeriesModel = new WeatherForecastSeriesModel
             {
-                WeatherForecasts = (newData ?? [])
+                WeatherForecasts = newData
                     .OrderBy(f => f.Date)
                     .ToList(),
                 Timestamp = DateTime.Now,

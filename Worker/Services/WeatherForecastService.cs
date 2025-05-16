@@ -1,3 +1,5 @@
+using Rtm.Worker.Models;
+
 namespace Rtm.Worker.Services;
 
 public class WeatherForecastService
@@ -7,7 +9,7 @@ public class WeatherForecastService
         "Dritkaldt", "Veldig kaldt", "Kaldt", "Kjølig", "Mildt", "Lummert", "Varmt", "Hett", "Dritvarmt"
     ];
 
-    public IEnumerable<WeatherForecast> GetForecasts(int days)
+    public IEnumerable<WeatherForecastModel> GetForecasts(int days)
     {
         var minTemp = -20m;
         var maxTemp = 55m;
@@ -16,7 +18,7 @@ public class WeatherForecastService
         return Enumerable.Range(1, days).Select(index =>
             {
                 var tempC = Random.Shared.Next((int)minTemp, (int)maxTemp);
-                return new WeatherForecast
+                return new WeatherForecastModel
                 {
                     Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
                     TemperatureC = tempC,

@@ -1,6 +1,6 @@
 using Rtm.Database.SeedData;
 
-namespace Rtm.Worker;
+namespace Rtm.Worker.Utils;
 
 public static class DatabaseInitializer
 {

@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Rtm.BlazorClient.Models;
 using Rtm.BlazorClient.Services;

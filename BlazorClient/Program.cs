@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Web;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
@@ -12,7 +11,7 @@ using Rtm.BlazorClient.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add authentication middleware
+// Add authentication and authorization middlewares
 builder.Services
     .AddAuthentication(options =>
     {
@@ -83,6 +82,5 @@ group.MapGet("/login", (string? returnUrl) => TypedResults.Challenge(AuthHelper.
 group.MapPost("/logout",
     ([FromForm] string? returnUrl) => TypedResults.SignOut(AuthHelper.GetAuthProperties(returnUrl),
         [CookieAuthenticationDefaults.AuthenticationScheme, OpenIdConnectDefaults.AuthenticationScheme]));
-
 
 app.Run();
