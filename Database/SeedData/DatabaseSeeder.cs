@@ -1,14 +1,19 @@
+using Microsoft.Extensions.Logging;
+
 namespace Rtm.Database.SeedData;
 
-public class DatabaseSeeder(CommercialContext dbContext)
+public class DatabaseSeeder(CommercialContext dbContext, ILogger<DatabaseSeeder> logger)
 {
     public async Task SeedDatabaseAsync()
     {
+        logger.LogInformation("Deleting development database");
         await dbContext.Database.EnsureDeletedAsync();
+        logger.LogInformation("Creating new development database");
         await dbContext.Database.EnsureCreatedAsync();
 
         var numUsers = 10;
 
+        logger.LogInformation("Seeding development database");
         // Create credit card info
         var ccInfos = new SeedCreditCardInfos().Generate(numUsers);
         await dbContext.CreditCardInfos.AddRangeAsync(ccInfos);

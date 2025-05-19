@@ -7,6 +7,7 @@ using Rtm.Worker.Utils;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+builder.Services.AddHttpClient();
 
 builder.Services.AddDbContext<CommercialContext>(options =>
 {
@@ -15,14 +16,21 @@ builder.Services.AddDbContext<CommercialContext>(options =>
         s => s.MigrationsAssembly(typeof(CommercialContext).Assembly));
 });
 
-builder.Services.AddScoped<DatabaseSeeder>();
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.AddScoped<DatabaseSeeder>();
+}
+
 builder.Services.AddScoped<WeatherForecastService>();
 builder.Services.AddScoped<CreditCardInfoService>();
 builder.Services.AddHostedService<TimedWorker>();
 
 var app = builder.Build();
 
-await app.InitializeDatabaseAsync();
+if (app.Environment.IsDevelopment())
+{
+    await app.InitializeDatabaseAsync();
+}
 
 app.UseHttpsRedirection();
 
