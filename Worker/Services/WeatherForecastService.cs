@@ -23,7 +23,7 @@ public class WeatherForecastService(ILogger<WeatherForecastService> logger)
                 var tempC = Random.Shared.Next((int)minTemp, (int)maxTemp);
                 return new WeatherForecastModel
                 {
-                    Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+                    Date = DateOnly.FromDateTime(DateTime.UtcNow.AddDays(index)),
                     TemperatureC = tempC,
                     Summary = Summaries[(int)((tempC - minTemp) * (Summaries.Length - 1) / (maxTemp - minTemp))]
                 };

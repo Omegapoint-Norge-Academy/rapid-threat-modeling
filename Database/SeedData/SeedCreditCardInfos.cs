@@ -15,7 +15,7 @@ public class SeedCreditCardInfos
             .RuleFor(cc => cc.Number, f => f.Finance.CreditCardNumber())
             .RuleFor(cc => cc.Cvc, f => f.Finance.CreditCardCvv())
             .RuleFor(cc => cc.ExpirationMonth, f => f.Random.Int(1, 12))
-            .RuleFor(cc => cc.ExpirationYear, f => f.Random.Int(DateTime.Now.Year + 1, DateTime.Now.Year + 5));
+            .RuleFor(cc => cc.ExpirationYear, f => f.Random.Int(DateTime.UtcNow.Year + 1, DateTime.UtcNow.Year + 5));
     }
 
     public List<CreditCardInfo> Generate(int count) => _faker.Generate(count);

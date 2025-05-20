@@ -1,56 +1,35 @@
+using System.Globalization;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Identity.Web;
-using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Rtm.BlazorClient;
 using Rtm.BlazorClient.Components;
-using Rtm.Database;
-using Microsoft.EntityFrameworkCore;
-using Rtm.BlazorClient.Services;
+using Rtm.BlazorClient.Extensions;
+
+CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("nb-NO");
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add authentication and authorization middlewares
-builder.Services
-    .AddAuthentication(options =>
-    {
-        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-        options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-    })
-    .AddMicrosoftIdentityWebApp(options =>
-        {
-            builder.Configuration.Bind("AzureAd", options);
-            options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            options.ResponseType = OpenIdConnectResponseType.Code;
-        },
-        cookieOptions =>
-        {
-            cookieOptions.ExpireTimeSpan = TimeSpan.FromMinutes(60);
-            cookieOptions.SlidingExpiration = true;
-            cookieOptions.Cookie.HttpOnly = true;
-            cookieOptions.Cookie.IsEssential = true;
-            cookieOptions.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-            cookieOptions.Cookie.SameSite = SameSiteMode.Lax;
-        });
-builder.Services.AddAuthorization();
+// Authentication and authorization middlewares
+builder.AddAuthServices();
 
-builder.Services.AddSingleton<WeatherForecastCacheService>();
-builder.Services.AddSingleton<CreditCardInfoCacheService>();
+// Services
+builder.Services.AddApplicationServices();
 
+// Cache
+builder.Services.AddHybridCache();
+
+// API Controllers
+builder.Services.AddControllers();
+
+// Http and Blazor
 builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddControllers();
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-builder.Services.AddDbContext<CommercialContext>(options =>
-    {
-        var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-        options.UseSqlServer(connectionString,
-            s => s.MigrationsAssembly(typeof(CommercialContext).Assembly));
-    }
-);
+// Database
+builder.AddDatabase();
 
 var app = builder.Build();
 

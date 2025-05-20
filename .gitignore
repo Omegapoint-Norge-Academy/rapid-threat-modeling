@@ -6,6 +6,9 @@ obj/
 project.lock.json
 NuGetScratch/
 appsettings.Development.json
+**/Properties/PublishProfiles/
+**/Properties/ServiceDependencies/
+**/*.user
 
 api/wwwroot/**
 !api/wwwroot/scratch.html

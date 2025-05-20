@@ -5,20 +5,20 @@
 @using Rtm.BlazorClient.Services
 
 @attribute [Authorize]
-@inject WeatherForecastCacheService WeatherForecastCacheService
+@inject HybridCacheService HybridCacheService
 @implements IDisposable
 
 <PageTitle>Weather</PageTitle>
 
 <h1>Weather</h1>
 
-@if (_forecastSeries == null || _forecastSeries.WeatherForecasts.Count == 0)
+@if (_weatherForecastSeries == null || _weatherForecastSeries.WeatherForecasts.Count == 0)
 {
     <p><em>Waiting for weather data...</em></p>
 }
 else
 {
-    <p>Updated at: @_forecastSeries.Timestamp.ToLongTimeString()</p>
+    <p>Updated at: @_weatherForecastSeries.Timestamp.ToLongTimeString() (UTC)</p>
     <table class="table">
         <thead>
         <tr>
@@ -29,7 +29,7 @@ else
         </tr>
         </thead>
         <tbody>
-        @foreach (var forecast in _forecastSeries.WeatherForecasts)
+        @foreach (var forecast in _weatherForecastSeries.WeatherForecasts)
         {
             <tr>
                 <td>@forecast.Date.ToShortDateString()</td>
@@ -43,24 +43,29 @@ else
 }
 
 @code {
-   
-    private WeatherForecastSeriesModel? _forecastSeries;
 
-    protected override void OnInitialized()
+    private WeatherForecastSeriesModel? _weatherForecastSeries;
+
+    protected override async Task OnInitializedAsync()
     {
-        _forecastSeries = WeatherForecastCacheService.GetWeatherForecastSeries();
-        WeatherForecastCacheService.OnChange += HandleUpdate;
+        _weatherForecastSeries = await HybridCacheService.GetWeatherForecastSeriesAsync();
+        HybridCacheService.OnWeatherForecastSeriesChange += OnWeatherForecastSeriesWeatherForecastSeriesChanged;
     }
 
-    private void HandleUpdate()
+    private void OnWeatherForecastSeriesWeatherForecastSeriesChanged()
     {
-        _forecastSeries = WeatherForecastCacheService.GetWeatherForecastSeries();
-        InvokeAsync(StateHasChanged);
+        _ = ReloadWeatherForecastSeriesAsync();
+    }
+
+    private async Task ReloadWeatherForecastSeriesAsync()
+    {
+        _weatherForecastSeries = await HybridCacheService.GetWeatherForecastSeriesAsync();
+        await InvokeAsync(StateHasChanged);
     }
 
     public void Dispose()
     {
-        WeatherForecastCacheService.OnChange -= HandleUpdate;
+        HybridCacheService.OnWeatherForecastSeriesChange -= OnWeatherForecastSeriesWeatherForecastSeriesChanged;
     }
 
 }

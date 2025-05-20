@@ -6,23 +6,29 @@ namespace Rtm.BlazorClient.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class WeatherForecastController(WeatherForecastCacheService weatherForecastCacheService) : ControllerBase
+public class WeatherForecastController(HybridCacheService hybridCacheService, ILogger<WeatherForecastController> logger)
+    : ControllerBase
 {
     [HttpGet(Name = "GetAllWeatherForecasts")]
-    public ActionResult<IEnumerable<WeatherForecastSeriesModel>> GetAll()
+    public async Task<IResult> GetAll(CancellationToken cancellationToken)
     {
-        return Ok(weatherForecastCacheService.GetWeatherForecastSeries());
+        logger.LogInformation("Received GET /api/weatherforecast");
+        var weatherForecast = await hybridCacheService.GetWeatherForecastSeriesAsync(cancellationToken);
+        return Results.Ok(weatherForecast);
     }
 
     [HttpPost(Name = "PostWeatherForecast")]
-    public ActionResult Post([FromBody] IEnumerable<WeatherForecastModel> forecasts)
+    public async Task<IResult> Post([FromBody] IEnumerable<WeatherForecastModel> forecasts)
     {
         if (!ModelState.IsValid)
-            return BadRequest(ModelState);
+        {
+            logger.LogWarning("Invalid json body in POST to /api/weatherforecast");
+            return Results.BadRequest(ModelState);
+        }
 
-        Console.WriteLine($"Received weather forecast data at {DateTime.Now.TimeOfDay}");
-        weatherForecastCacheService.UpdateWeatherData(forecasts);
+        logger.LogInformation($"Received weather forecasts");
+        await hybridCacheService.SetWeatherDataAsync(forecasts);
 
-        return Ok();
+        return Results.Ok();
     }
 }

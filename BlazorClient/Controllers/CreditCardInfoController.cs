@@ -6,23 +6,31 @@ namespace Rtm.BlazorClient.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class CreditCardInfoController(CreditCardInfoCacheService creditCardInfoCacheService) : ControllerBase
+public class CreditCardInfoController(
+    HybridCacheService cacheService,
+    ILogger<CreditCardInfoController> logger
+) : ControllerBase
 {
     [HttpGet(Name = "GetAllCreditCardInfos")]
-    public ActionResult<IEnumerable<CreditCardInfoModel>> GetAll()
+    public async Task<IResult> GetAll()
     {
-        return Ok(creditCardInfoCacheService.GetCreditCardInfos());
+        logger.LogInformation("Received GET /api/creditcardinfo");
+        var ccInfo = await cacheService.GetCreditCardInfoAsync();
+        return Results.Ok(ccInfo);
     }
 
     [HttpPost(Name = "PostCreditCardInfo")]
-    public ActionResult Post([FromBody] IEnumerable<CreditCardInfoModel> creditCardInfos)
+    public async Task<IResult> Post([FromBody] IEnumerable<CreditCardInfoModel> creditCardInfos)
     {
         if (!ModelState.IsValid)
-            return BadRequest(ModelState);
+        {
+            logger.LogWarning("Invalid json body in POST to /api/creditcardinfo");
+            return Results.BadRequest(ModelState);
+        }
 
-        Console.WriteLine($"Received credit card info at {DateTime.Now.TimeOfDay}");
-        creditCardInfoCacheService.UpdateCreditCardInfos(creditCardInfos);
+        logger.LogInformation($"Received credit card info");
+        await cacheService.SetCreditCardInfoAsync(creditCardInfos);
 
-        return Ok();
+        return Results.Ok();
     }
 }
