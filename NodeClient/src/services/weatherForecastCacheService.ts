@@ -6,13 +6,13 @@ let cachedWeatherForecasts: WeatherForecastSeriesModel = {
   timestamp: new Date(),
 };
 
-export function setWeatherForecasts(data: WeatherForecastModel[]) {
+export const setWeatherForecasts = (data: WeatherForecastModel[]) => {
   cachedWeatherForecasts = {
     weatherForecasts: data,
     timestamp: new Date(),
   };
-}
+};
 
-export function getWeatherForecasts(): WeatherForecastSeriesModel {
+export const getWeatherForecasts = (): WeatherForecastSeriesModel => {
   return cachedWeatherForecasts;
-}
+};

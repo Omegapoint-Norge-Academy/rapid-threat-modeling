@@ -3,13 +3,13 @@ import { CreditCardInfoModel } from '../models/CreditCardInfoModel';
 
 let cachedCreditCards: CreditCardInfoListModel = { creditCards: [], timestamp: new Date() };
 
-export function setCreditCardInfos(data: CreditCardInfoModel[]) {
+export const setCreditCardInfos = (data: CreditCardInfoModel[]) => {
   cachedCreditCards = {
     creditCards: data,
     timestamp: new Date(),
   };
-}
+};
 
-export function getCreditCardInfos(): CreditCardInfoListModel {
+export const getCreditCardInfos = (): CreditCardInfoListModel => {
   return cachedCreditCards;
-}
+};

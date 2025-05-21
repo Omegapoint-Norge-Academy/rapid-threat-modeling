@@ -14,11 +14,15 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "mssql": "^11.0.1",
     "winston": "^3.17.0"
   },
   "devDependencies": {
+    "@types/dotenv": "^6.1.1",
     "@types/express": "^5.0.2",
+    "@types/mssql": "^9.1.7",
     "@types/node": "^22.15.21",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.8.3"
