@@ -1,1 +1,11 @@
 GET http://localhost:3000/weatherforecast
+###
+
+POST http://localhost:3000/weatherforecast
+###
+
+GET http://localhost:3000/creditcardinfo
+###
+
+POST http://localhost:3000/creditcardinfo
+###
