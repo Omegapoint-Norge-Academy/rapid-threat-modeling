@@ -40,7 +40,7 @@ frontend.
   - [x] Hente data fra databasen
   - [x] Worker som poster data til .NET-klient og Node.js-klient
 - [ ] Node.js klientprosjekt
-  - [ ] Lage prosjekt
+  - [x] Lage prosjekt
   - [ ] Cache data som kommer fra UserServiceWorker
   - [ ] Hente data fra databasen
 - [ ] Lage kurs i Learnster
