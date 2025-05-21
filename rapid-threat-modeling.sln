@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Databa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Worker", "Worker\Worker.csproj", "{F8DDEBA6-8839-43F4-98E2-324236BF9558}"
 EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "NodeClient", "NodeClient\NodeClient.esproj", "{B6653670-937A-FD82-8420-66A1C2390AED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,8 +57,29 @@ Global
 		{F8DDEBA6-8839-43F4-98E2-324236BF9558}.Release|x64.Build.0 = Release|Any CPU
 		{F8DDEBA6-8839-43F4-98E2-324236BF9558}.Release|x86.ActiveCfg = Release|Any CPU
 		{F8DDEBA6-8839-43F4-98E2-324236BF9558}.Release|x86.Build.0 = Release|Any CPU
+		{B6653670-937A-FD82-8420-66A1C2390AED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6653670-937A-FD82-8420-66A1C2390AED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6653670-937A-FD82-8420-66A1C2390AED}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B6653670-937A-FD82-8420-66A1C2390AED}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B6653670-937A-FD82-8420-66A1C2390AED}.Debug|x64.Build.0 = Debug|Any CPU
+		{B6653670-937A-FD82-8420-66A1C2390AED}.Debug|x64.Deploy.0 = Debug|Any CPU
+		{B6653670-937A-FD82-8420-66A1C2390AED}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B6653670-937A-FD82-8420-66A1C2390AED}.Debug|x86.Build.0 = Debug|Any CPU
+		{B6653670-937A-FD82-8420-66A1C2390AED}.Debug|x86.Deploy.0 = Debug|Any CPU
+		{B6653670-937A-FD82-8420-66A1C2390AED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6653670-937A-FD82-8420-66A1C2390AED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6653670-937A-FD82-8420-66A1C2390AED}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B6653670-937A-FD82-8420-66A1C2390AED}.Release|x64.ActiveCfg = Release|Any CPU
+		{B6653670-937A-FD82-8420-66A1C2390AED}.Release|x64.Build.0 = Release|Any CPU
+		{B6653670-937A-FD82-8420-66A1C2390AED}.Release|x64.Deploy.0 = Release|Any CPU
+		{B6653670-937A-FD82-8420-66A1C2390AED}.Release|x86.ActiveCfg = Release|Any CPU
+		{B6653670-937A-FD82-8420-66A1C2390AED}.Release|x86.Build.0 = Release|Any CPU
+		{B6653670-937A-FD82-8420-66A1C2390AED}.Release|x86.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AB6DD80D-4AD7-414C-8851-CE19B91B6F5B}
 	EndGlobalSection
 EndGlobal
