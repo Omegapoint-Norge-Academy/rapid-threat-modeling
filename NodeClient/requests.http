@@ -9,7 +9,9 @@ Content-Type: application/json
 [
     { "date": "2025-05-22", "temperatureC": 20, "summary": "Varmt" },
     { "date": "2025-05-23", "temperatureC": 15, "summary": "Småkaldt" },
-    { "date": "2025-05-24", "temperatureC": 12, "summary": "Kjølig" }
+    { "date": "2025-05-24", "temperatureC": 12, "summary": "Kjølig" },
+    { "date": "2025-05-25", "temperatureC": 14, "summary": "Småkaldt" },
+    { "date": "2025-05-26", "temperatureC": 22, "summary": "Hett" }
 ]
 ###
 
@@ -22,11 +24,51 @@ Content-Type: application/json
 [
     {
       "id": 1,
-      "owner": "Klas Olesen",
-      "number": "1234234534564567",
-      "cvc": "123",
+      "owner": "Kåre Vinneren",
+      "number": "4242 4242 4242 4242",
+      "cvc": "211",
+      "expirationMonth": 1,
+      "expirationYear": 2027
+    },
+    {
+      "id": 2,
+      "owner": "Per Vers",
+      "number": "1111 2222 3333 4444",
+      "cvc": "980",
       "expirationMonth": 12,
       "expirationYear": 2025
+    },
+    {
+      "id": 3,
+      "owner": "Kjell T. Ringen",
+      "number": "5555 4193 5901 3094",
+      "cvc": "246",
+      "expirationMonth": 10,
+      "expirationYear": 2026
+    },
+    {
+      "id": 4,
+      "owner": "Jan T. Loven",
+      "number": "3782 9301 0032 4231",
+      "cvc": "601",
+      "expirationMonth": 2,
+      "expirationYear": 2028
+    },
+    {
+      "id": 5,
+      "owner": "Unni Versell",
+      "number": "4240 3023 0983 1200",
+      "cvc": "931",
+      "expirationMonth": 5,
+      "expirationYear": 2028
+    },
+    {
+      "id": 6,
+      "owner": "Sten, Jørn E.",
+      "number": "6011 0009 9013 9424",
+      "cvc": "214",
+      "expirationMonth": 8,
+      "expirationYear": 2026
     }
 ]
 ###

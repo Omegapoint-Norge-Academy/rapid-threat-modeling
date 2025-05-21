@@ -1,7 +1,7 @@
 import { CreditCardInfoListModel } from '../models/CreditCardInfoListModel';
 import { CreditCardInfoModel } from '../models/CreditCardInfoModel';
 
-let cachedCreditCards: CreditCardInfoListModel;
+let cachedCreditCards: CreditCardInfoListModel = { creditCards: [], timestamp: new Date() };
 
 export function setCreditCardInfos(data: CreditCardInfoModel[]) {
   cachedCreditCards = {
