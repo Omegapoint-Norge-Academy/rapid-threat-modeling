@@ -1,0 +1,22 @@
+@baseUrl = http://localhost:3000
+
+GET {{baseUrl}}/weatherforecast
+###
+
+POST {{baseUrl}}/weatherforecast
+Content-Type: application/json
+
+< ./weatherForecasts.json
+###
+
+GET {{baseUrl}}/creditcardinfo
+###
+
+POST {{baseUrl}}/creditcardinfo
+Content-Type: application/json
+
+< ./creditCards.json
+###
+
+GET {{baseUrl}}/products
+###

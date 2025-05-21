@@ -1,0 +1,27 @@
+[
+  {
+    "date": "2025-05-22",
+    "temperatureC": 20,
+    "summary": "Varmt"
+  },
+  {
+    "date": "2025-05-23",
+    "temperatureC": 15,
+    "summary": "Småkaldt"
+  },
+  {
+    "date": "2025-05-24",
+    "temperatureC": 12,
+    "summary": "Kjølig"
+  },
+  {
+    "date": "2025-05-25",
+    "temperatureC": 14,
+    "summary": "Småkaldt"
+  },
+  {
+    "date": "2025-05-26",
+    "temperatureC": 22,
+    "summary": "Hett"
+  }
+]
