@@ -27,20 +27,3 @@ frontend.
 
 <img src="architecture.png" width=800 />
 
-## Checklist
-
-- [x] .NET klientprosjekt (Blazor Server)
-  - [x] Lage prosjekt
-  - [x] Entra ID login
-  - [x] Cache data som kommer fra UserServiceWorker
-  - [x] Hente data fra databasen
-- [x] Databaseprosjekt
-- [x] .NET backend-prosjekt (UserServiceWorker)
-  - [x] Lage prosjekt
-  - [x] Hente data fra databasen
-  - [x] Worker som poster data til .NET-klient og Node.js-klient
-- [ ] Node.js klientprosjekt
-  - [x] Lage prosjekt
-  - [x] Cache data som kommer fra UserServiceWorker
-  - [ ] Hente data fra databasen
-- [ ] Lage kurs i Learnster
