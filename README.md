@@ -27,3 +27,10 @@ frontend.
 
 <img src="architecture.png" width=800 />
 
+## Project details
+
+Additional project details can be found in each project's respective README:
+
+- [BlazorClient](/BlazorClient/README.md)
+- [NodeClient](/NodeClient/README.md)
+- [Worker](/Worker/README.md)
