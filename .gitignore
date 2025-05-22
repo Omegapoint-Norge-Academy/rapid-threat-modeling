@@ -35,3 +35,4 @@ ops/*.retry
 # IDE
 .idea/
 .vs/
+.vscode/
