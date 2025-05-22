@@ -31,6 +31,6 @@ public class CreditCardInfoController(
         logger.LogInformation($"Received credit card info");
         await cacheService.SetCreditCardInfoAsync(creditCardInfos);
 
-        return Results.Ok();
+        return Results.Created();
     }
 }

@@ -29,6 +29,6 @@ public class WeatherForecastController(HybridCacheService hybridCacheService, IL
         logger.LogInformation($"Received weather forecasts");
         await hybridCacheService.SetWeatherDataAsync(forecasts);
 
-        return Results.Ok();
+        return Results.Created();
     }
 }
