@@ -25,4 +25,4 @@ pids
 .vscode/
 
 # Azure deployment config
-.deployment
+**/.deployment
