@@ -4,26 +4,27 @@ This repository contains materials for the Rapid Threat Modeling workshop.
 In this workshop you will analyse the provided system architecture to identify
 potential security vulnerabilities using rapid threat modeling.
 
-The focus is on understanding how data flows to identifying weak points,
-and then look for vulnerabilities the codebase, using this information.
+The goal is to understand how data flows to identify weak points. Then, using
+this information, look for vulnerabilities the codebase.
 
 ## Architecture
 
-This example system includes three application servers and one Azure SQL
-database. All servers read from the database, but only the Worker (.NET)
+This example system consists of three servers and one Azure SQL database.
+All three servers read from the database, but only the Worker (.NET)
 accesses sensitive data in the database. The Worker then distributes this
-confidential data to two public servers: an ASP.NET web server and Node.js
-web server.
+confidential data to the two public servers: an ASP.NET web server
+(BlazorClient) and an Express web server (NodeClient).
 
-- The **.NET Public Server** hosts both an API and a Blazor Server frontend,
-  the latter of which is accessible only to users authenticated via Entra ID.
-- The **Node.js Public Server** serves an API that provides both database data and
-  data received from the Worker.
-- The **.NET Worker Server** loads sensitive data from the database and pushes
-  this data periodically to the two public servers through HTTP POST requests.
+- **BlazorClient (ASP.NET)** hosts both an API and a Blazor
+  Server frontend. The latter of which is accessible only to users
+  authenticated with Entra ID.
+- **NodeClient (Express.js)** serves an API that provides both
+  database data and data received from the Worker.
+- **Worker (.NET)** loads sensitive data from the database and pushes
+  this data periodically to the two client servers through HTTP POST requests.
 
-Clients (both browsers and servers) consume the public APIs and the Blazor
-frontend.
+Clients (both browsers and other servers) can consume the public APIs and the
+Blazor frontend.
 
 <img src="architecture.png" width=800 />
 
