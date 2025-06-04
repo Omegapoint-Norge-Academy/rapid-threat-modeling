@@ -15,7 +15,7 @@ public class DatabaseSeeder(CommercialContext dbContext, ILogger<DatabaseSeeder>
 
         logger.LogInformation("Seeding development database");
         // Create credit card info
-        var ccInfos = new SeedCreditCardInfos().Generate(numUsers);
+        var ccInfos = new SeedCreditCardInfos().Generate();
         await dbContext.CreditCardInfos.AddRangeAsync(ccInfos);
 
         // Save to db to generate ids

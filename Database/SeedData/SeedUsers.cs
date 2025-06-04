@@ -21,7 +21,10 @@ public class SeedUsers
         var users = _faker.Generate(ccInfos.Count);
         for (var i = 0; i < users.Count; i++)
         {
+            var names = ccInfos[i].Owner.Split(" ");
             users[i].CreditCardId = ccInfos[i].Id;
+            users[i].FirstName = string.Join(" ", names.Take(names.Length - 1));
+            users[i].LastName = names.Last();
         }
 
         return users;
